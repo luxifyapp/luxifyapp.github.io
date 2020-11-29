@@ -1,645 +1,668 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Luxify App</title><style>
-/* webkit printing magic: print all background colors */
-html {
-	-webkit-print-color-adjust: exact;
-}
-* {
-	box-sizing: border-box;
-	-webkit-print-color-adjust: exact;
-}
-
-html,
-body {
-	margin: 0;
-	padding: 0;
-}
-@media only screen {
-	body {
-		margin: 2em auto;
-		max-width: 900px;
-		color: rgb(55, 53, 47);
-	}
-}
-
-body {
-	line-height: 1.5;
-	white-space: pre-wrap;
-}
-
-a,
-a.visited {
-	color: inherit;
-	text-decoration: underline;
-}
-
-.pdf-relative-link-path {
-	font-size: 80%;
-	color: #444;
-}
-
-h1,
-h2,
-h3 {
-	letter-spacing: -0.01em;
-	line-height: 1.2;
-	font-weight: 600;
-	margin-bottom: 0;
-}
-
-.page-title {
-	font-size: 2.5rem;
-	font-weight: 700;
-	margin-top: 0;
-	margin-bottom: 0.75em;
-}
-
-h1 {
-	font-size: 1.875rem;
-	margin-top: 1.875rem;
-}
-
-h2 {
-	font-size: 1.5rem;
-	margin-top: 1.5rem;
-}
-
-h3 {
-	font-size: 1.25rem;
-	margin-top: 1.25rem;
-}
-
-.source {
-	border: 1px solid #ddd;
-	border-radius: 3px;
-	padding: 1.5em;
-	word-break: break-all;
-}
-
-.callout {
-	border-radius: 3px;
-	padding: 1rem;
-}
-
-figure {
-	margin: 1.25em 0;
-	page-break-inside: avoid;
-}
-
-figcaption {
-	opacity: 0.5;
-	font-size: 85%;
-	margin-top: 0.5em;
-}
-
-mark {
-	background-color: transparent;
-}
-
-.indented {
-	padding-left: 1.5em;
-}
-
-hr {
-	background: transparent;
-	display: block;
-	width: 100%;
-	height: 1px;
-	visibility: visible;
-	border: none;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
-}
-
-img {
-	max-width: 100%;
-}
-
-@media only print {
-	img {
-		max-height: 100vh;
-		object-fit: contain;
-	}
-}
-
-@page {
-	margin: 1in;
-}
-
-.collection-content {
-	font-size: 0.875rem;
-}
-
-.column-list {
-	display: flex;
-	justify-content: space-between;
-}
-
-.column {
-	padding: 0 1em;
-}
-
-.column:first-child {
-	padding-left: 0;
-}
-
-.column:last-child {
-	padding-right: 0;
-}
-
-.table_of_contents-item {
-	display: block;
-	font-size: 0.875rem;
-	line-height: 1.3;
-	padding: 0.125rem;
-}
-
-.table_of_contents-indent-1 {
-	margin-left: 1.5rem;
-}
-
-.table_of_contents-indent-2 {
-	margin-left: 3rem;
-}
-
-.table_of_contents-indent-3 {
-	margin-left: 4.5rem;
-}
-
-.table_of_contents-link {
-	text-decoration: none;
-	opacity: 0.7;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
-}
-
-table,
-th,
-td {
-	border: 1px solid rgba(55, 53, 47, 0.09);
-	border-collapse: collapse;
-}
-
-table {
-	border-left: none;
-	border-right: none;
-}
-
-th,
-td {
-	font-weight: normal;
-	padding: 0.25em 0.5em;
-	line-height: 1.5;
-	min-height: 1.5em;
-	text-align: left;
-}
-
-th {
-	color: rgba(55, 53, 47, 0.6);
-}
-
-ol,
-ul {
-	margin: 0;
-	margin-block-start: 0.6em;
-	margin-block-end: 0.6em;
-}
-
-li > ol:first-child,
-li > ul:first-child {
-	margin-block-start: 0.6em;
-}
-
-ul > li {
-	list-style: disc;
-}
-
-ul.to-do-list {
-	text-indent: -1.7em;
-}
-
-ul.to-do-list > li {
-	list-style: none;
-}
-
-.to-do-children-checked {
-	text-decoration: line-through;
-	opacity: 0.375;
-}
-
-ul.toggle > li {
-	list-style: none;
-}
-
-ul {
-	padding-inline-start: 1.7em;
-}
-
-ul > li {
-	padding-left: 0.1em;
-}
-
-ol {
-	padding-inline-start: 1.6em;
-}
-
-ol > li {
-	padding-left: 0.2em;
-}
-
-.mono ol {
-	padding-inline-start: 2em;
-}
-
-.mono ol > li {
-	text-indent: -0.4em;
-}
-
-.toggle {
-	padding-inline-start: 0em;
-	list-style-type: none;
-}
-
-/* Indent toggle children */
-.toggle > li > details {
-	padding-left: 1.7em;
-}
-
-.toggle > li > details > summary {
-	margin-left: -1.1em;
-}
-
-.selected-value {
-	display: inline-block;
-	padding: 0 0.5em;
-	background: rgba(206, 205, 202, 0.5);
-	border-radius: 3px;
-	margin-right: 0.5em;
-	margin-top: 0.3em;
-	margin-bottom: 0.3em;
-	white-space: nowrap;
-}
-
-.collection-title {
-	display: inline-block;
-	margin-right: 1em;
-}
-
-time {
-	opacity: 0.5;
-}
-
-.icon {
-	display: inline-block;
-	max-width: 1.2em;
-	max-height: 1.2em;
-	text-decoration: none;
-	vertical-align: text-bottom;
-	margin-right: 0.5em;
-}
-
-img.icon {
-	border-radius: 3px;
-}
-
-.user-icon {
-	width: 1.5em;
-	height: 1.5em;
-	border-radius: 100%;
-	margin-right: 0.5rem;
-}
-
-.user-icon-inner {
-	font-size: 0.8em;
-}
-
-.text-icon {
-	border: 1px solid #000;
-	text-align: center;
-}
-
-.page-cover-image {
-	display: block;
-	object-fit: cover;
-	width: 100%;
-	height: 30vh;
-}
-
-.page-header-icon {
-	font-size: 3rem;
-	margin-bottom: 1rem;
-}
-
-.page-header-icon-with-cover {
-	margin-top: -0.72em;
-	margin-left: 0.07em;
-}
-
-.page-header-icon img {
-	border-radius: 3px;
-}
-
-.link-to-page {
-	margin: 1em 0;
-	padding: 0;
-	border: none;
-	font-weight: 500;
-}
-
-p > .user {
-	opacity: 0.5;
-}
-
-td > .user,
-td > time {
-	white-space: nowrap;
-}
-
-input[type="checkbox"] {
-	transform: scale(1.5);
-	margin-right: 0.6em;
-	vertical-align: middle;
-}
-
-p {
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-}
-
-.image {
-	border: none;
-	margin: 1.5em 0;
-	padding: 0;
-	border-radius: 0;
-	text-align: center;
-}
-
-.code,
-code {
-	background: rgba(135, 131, 120, 0.15);
-	border-radius: 3px;
-	padding: 0.2em 0.4em;
-	border-radius: 3px;
-	font-size: 85%;
-	tab-size: 2;
-}
-
-code {
-	color: #eb5757;
-}
-
-.code {
-	padding: 1.5em 1em;
-}
-
-.code-wrap {
-	white-space: pre-wrap;
-	word-break: break-all;
-}
-
-.code > code {
-	background: none;
-	padding: 0;
-	font-size: 100%;
-	color: inherit;
-}
-
-blockquote {
-	font-size: 1.25em;
-	margin: 1em 0;
-	padding-left: 1em;
-	border-left: 3px solid rgb(55, 53, 47);
-}
-
-.bookmark {
-	text-decoration: none;
-	max-height: 8em;
-	padding: 0;
-	display: flex;
-	width: 100%;
-	align-items: stretch;
-}
-
-.bookmark-title {
-	font-size: 0.85em;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	height: 1.75em;
-	white-space: nowrap;
-}
-
-.bookmark-text {
-	display: flex;
-	flex-direction: column;
-}
-
-.bookmark-info {
-	flex: 4 1 180px;
-	padding: 12px 14px 14px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-.bookmark-image {
-	width: 33%;
-	flex: 1 1 180px;
-	display: block;
-	position: relative;
-	object-fit: cover;
-	border-radius: 1px;
-}
-
-.bookmark-description {
-	color: rgba(55, 53, 47, 0.6);
-	font-size: 0.75em;
-	overflow: hidden;
-	max-height: 4.5em;
-	word-break: break-word;
-}
-
-.bookmark-href {
-	font-size: 0.75em;
-	margin-top: 0.25em;
-}
-
-.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
-.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
-.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
-.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
-.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
-
-.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
-
-.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
-
-.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
-
-.highlight-default {
-}
-.highlight-gray {
-	color: rgb(155,154,151);
-}
-.highlight-brown {
-	color: rgb(100,71,58);
-}
-.highlight-orange {
-	color: rgb(217,115,13);
-}
-.highlight-yellow {
-	color: rgb(223,171,1);
-}
-.highlight-teal {
-	color: rgb(15,123,108);
-}
-.highlight-blue {
-	color: rgb(11,110,153);
-}
-.highlight-purple {
-	color: rgb(105,64,165);
-}
-.highlight-pink {
-	color: rgb(173,26,114);
-}
-.highlight-red {
-	color: rgb(224,62,62);
-}
-.highlight-gray_background {
-	background: rgb(235,236,237);
-}
-.highlight-brown_background {
-	background: rgb(233,229,227);
-}
-.highlight-orange_background {
-	background: rgb(250,235,221);
-}
-.highlight-yellow_background {
-	background: rgb(251,243,219);
-}
-.highlight-teal_background {
-	background: rgb(221,237,234);
-}
-.highlight-blue_background {
-	background: rgb(221,235,241);
-}
-.highlight-purple_background {
-	background: rgb(234,228,242);
-}
-.highlight-pink_background {
-	background: rgb(244,223,235);
-}
-.highlight-red_background {
-	background: rgb(251,228,228);
-}
-.block-color-default {
-	color: inherit;
-	fill: inherit;
-}
-.block-color-gray {
-	color: rgba(55, 53, 47, 0.6);
-	fill: rgba(55, 53, 47, 0.6);
-}
-.block-color-brown {
-	color: rgb(100,71,58);
-	fill: rgb(100,71,58);
-}
-.block-color-orange {
-	color: rgb(217,115,13);
-	fill: rgb(217,115,13);
-}
-.block-color-yellow {
-	color: rgb(223,171,1);
-	fill: rgb(223,171,1);
-}
-.block-color-teal {
-	color: rgb(15,123,108);
-	fill: rgb(15,123,108);
-}
-.block-color-blue {
-	color: rgb(11,110,153);
-	fill: rgb(11,110,153);
-}
-.block-color-purple {
-	color: rgb(105,64,165);
-	fill: rgb(105,64,165);
-}
-.block-color-pink {
-	color: rgb(173,26,114);
-	fill: rgb(173,26,114);
-}
-.block-color-red {
-	color: rgb(224,62,62);
-	fill: rgb(224,62,62);
-}
-.block-color-gray_background {
-	background: rgb(235,236,237);
-}
-.block-color-brown_background {
-	background: rgb(233,229,227);
-}
-.block-color-orange_background {
-	background: rgb(250,235,221);
-}
-.block-color-yellow_background {
-	background: rgb(251,243,219);
-}
-.block-color-teal_background {
-	background: rgb(221,237,234);
-}
-.block-color-blue_background {
-	background: rgb(221,235,241);
-}
-.block-color-purple_background {
-	background: rgb(234,228,242);
-}
-.block-color-pink_background {
-	background: rgb(244,223,235);
-}
-.block-color-red_background {
-	background: rgb(251,228,228);
-}
-.select-value-color-default { background-color: rgba(206,205,202,0.5); }
-.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
-.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
-.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
-.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
-.select-value-color-green { background-color: rgba(0,135,107,0.2); }
-.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
-.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
-.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
-.select-value-color-red { background-color: rgba(255,0,26,0.2); }
-
-.checkbox {
-	display: inline-flex;
-	vertical-align: text-bottom;
-	width: 16;
-	height: 16;
-	background-size: 16px;
-	margin-left: 2px;
-	margin-right: 5px;
-}
-
-.checkbox-on {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-
-.checkbox-off {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-	
-</style></head><body><article id="587eb37c-0ca8-4aff-b11f-2f455fa6dcb6" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/solid_beige.png" style="object-position:center 40%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">✨</span></div><h1 class="page-title">Luxify App</h1></header><div class="page-body"><p id="e7c2f11a-7509-4ca2-ac0f-69502c9ef355" class="">Luxify App is a software service that tracks Louis Vuitton item stock and sends notifications to you as soon as they become available to ✨ Add to Cart ✨.</p><p id="9f7ecff0-8ed4-46ec-8de2-fb09dc485ce3" class="">It currently sends notifications through <code><strong>Facebook Messenger Chat</strong></code> and supports <code><strong>Louis Vuitton </strong></code>stock notifications.</p><p id="6b2097b0-b033-46f8-bf7b-af77145a680f" class="">
-</p><h2 id="421fef18-1287-4b90-8bf6-cb14b08f6c08" class="">Pricing Plan 💸 </h2><p id="4b039f60-7be9-4523-9995-d1d63229de94" class=""><strong>$20 USD / month</strong> - Notifications are turned on for 1 item of your choice for 1 month</p><p id="db5dc15d-212d-492b-bdec-6f489c8cb1d6" class=""><strong>$35 USD / month</strong> - Notifications are turned on for up to 3 items of your choice for 1 month</p><p id="37bf3f26-4db2-434d-bb40-600d0b03656e" class=""><em>Questions? Feel free to </em><em><a href="https://www.facebook.com/luxify.app.3/">contact us on Facebook</a></em><em> or through </em><em><a href="https://www.instagram.com/luxnotifs/">our Instagram page</a></em><em>. </em></p><p id="313cd200-fc0a-4ff4-9f1e-979476249627" class="">
-</p><h2 id="f6d30c04-bf1c-4754-b5f8-e2b4ce124e04" class="">How to Get Started 👛</h2><ol id="d52a37d2-45c4-4ad5-94c7-e0db0daaf11d" class="numbered-list" start="1"><li><a href="https://www.facebook.com/luxify.app.3/">Send a message to us on Facebook</a> to let us know you are interested! <em>Please include your region (country) + links to the items you are interested in receiving stock notifications for.</em></li></ol><ol id="932f7417-39df-44b0-a59d-b8f6e6d51e7c" class="numbered-list" start="2"><li>We will provide PayPal payment instructions to you. Since we are based in Canada, we are unable to accept Venmo or bank transfers in most cases. 😅</li></ol><ol id="3904cf8b-8b53-4a57-ab67-9294a94c17ac" class="numbered-list" start="3"><li>As soon as payment is verified, we will add you to the notification system for 30 days.</li></ol><ol id="b9cfd653-e943-47d1-81a1-294742b501fc" class="numbered-list" start="4"><li>You will begin receiving notifications every time the item(s) are in stock:</li></ol><div id="92744ec9-9e27-4ae7-8860-bc6c08d814e4" class="column-list"><div id="058e22f8-e26b-44da-8951-767b440f2d7d" style="width:43.75%" class="column"><figure id="cbd1230d-7c27-4dd5-98c2-32f602ecd48e" class="image"><a href="Luxify%20App%20cbd1230d7c274dd598c232f602ecd48e/Untitled.png"><img style="width:288px" src="Luxify%20App%20cbd1230d7c274dd598c232f602ecd48e/Untitled.png"/></a><figcaption>Example of device notifications</figcaption></figure><p id="454d0cf6-5270-4a47-b3a1-7b52484fe359" class="">
-</p></div><div id="b8da96de-d497-4e90-b999-10ebbb034ef7" style="width:56.25%" class="column"><figure id="ac9c487e-3291-4819-9b7e-8afdd9dea15a" class="image"><a href="Luxify%20App%20cbd1230d7c274dd598c232f602ecd48e/Untitled%201.png"><img style="width:384px" src="Luxify%20App%20cbd1230d7c274dd598c232f602ecd48e/Untitled%201.png"/></a><figcaption>Example of stock notification messages </figcaption></figure><p id="a1b788c5-aa53-4ef2-bd7a-8162b38bbf70" class="">
-</p></div></div><h2 id="6994b6bf-07d9-4c7b-90f9-9f08fe9f78ee" class=""><strong>Tips and Tricks for Securing Items 💡</strong></h2><ol id="b672bdce-4d46-4f0a-984f-2e2faf89ec2b" class="numbered-list" start="1"><li>Turn message notifications from Luxify App on</li></ol><ol id="2eab03f1-2bea-4992-b72a-f030be5f158d" class="numbered-list" start="2"><li>Stay signed in to your Louis Vuitton account</li></ol><ol id="ac4e2eeb-7497-4595-9252-a86bfe99bbe1" class="numbered-list" start="3"><li>Pre-fill your delivery address details so you can check out faster</li></ol><ol id="c7cc6afb-d1f3-4890-b495-aa09400b90ef" class="numbered-list" start="4"><li>Pre-fill your credit card information or use PayPal so you can check out faster</li></ol><ol id="2a6ed62b-ebc6-449f-87ab-34a109d02af1" class="numbered-list" start="5"><li>Refresh from your Wishlist page - there are rumours that items will appear as &quot;Add to Cart&quot; a few seconds sooner on there than on the product page</li></ol><ol id="b3169476-bfa0-4854-b880-8ca9c74ee043" class="numbered-list" start="6"><li>If an item is in stock, the notification system will message you continuously (every 15 seconds) until it is out of stock. This will give you an idea of how quickly that item sells out</li></ol><ol id="46371fb0-c925-48aa-a240-599d19d3488f" class="numbered-list" start="7"><li>If you manage to add the item to your cart but cannot checkout due to the item being sold out already, you can continue refreshing your cart until you may proceed, or wait until the next Luxify App notifications to proceed</li></ol><p id="deabbb8c-0dad-471d-92b3-5b0b5df8dce2" class="">
-</p><h2 id="df769acd-786f-4142-a0d3-945d290acb8a" class="">FAQ 🤓</h2><p id="89758bbe-7143-4d80-b5c3-505c09d6d434" class="">
-</p><p id="c406515e-5daf-48da-a904-e732b00bec4f" class=""><strong>Q: Why does Luxify App use Facebook Messenger to send notifications?</strong></p><p id="e02cfe0a-d7c1-4757-ba3c-fcb98ccb700f" class="">A: The simple answer - it&#x27;s <strong>fast.</strong> If you require accommodations or would prefer to receive notifications through emails, please let us know. We&#x27;re happy to see what we can do!</p><p id="df5c5285-c4de-4aa2-ba10-81d88a8005a2" class="">
-</p><p id="6034e973-a22e-46b4-941d-8e76ab294415" class=""><strong>Q: Does Luxify App only work for Louis Vuitton items? What about items from _______?</strong></p><p id="3ec75d18-3c18-4988-ba24-ccb2b2e84157" class="">A: At the moment, we only <em>confidently</em> support notifications for Louis Vuitton items (across all of their international sites). However, we are looking into adding support for Chanel Beauty and other designers. Feel free to ask if you have something specific in mind and we can look into it for you.</p><p id="481ff942-b198-4015-b435-177542bf2459" class="">
-</p><p id="76070833-221b-4395-ad46-a5a868e1f8f2" class=""><strong>Q: Will Luxify App help me complete my purchase of items?</strong></p><p id="6d14ba76-9779-43e1-9178-4f4c0bcc83d2" class="">A: Nope! This is very important to note - Luxify App is a <em>notification service</em> that will let you know when you&#x27;ll be able to add an item to your cart, but it will not check out or automate the buying process for you.
-</p>
-<p id="be89ceed-fa30-4212-b9a7-71febe195116" class=""><strong>Q: I got a notification but the item was out of stock when I went to check. Why didn&#x27;t it work?</strong></p><p id="86162d05-8817-47b5-9b0b-568cb54a4023" class="">A: Depending on the item, it can sell out within seconds to minutes after it stocks. We would recommend staying signed in to your Louis Vuitton account so you can quickly add it to your cart <em>as soon as you get a notification</em>. </p><p id="a5194ee9-409d-4f1e-8272-4d96b4885572" class="">
-</p><p id="b4841a27-2de0-43ed-969e-76937aa41c18" class=""><strong>Q: I added the item to my cart but then I couldn&#x27;t proceed! Help?!</strong></p><p id="5c29aee7-9714-4a84-9d9e-5b4b2ae79521" class="">A: Remain calm! Keep refreshing<em> from your cart </em>until you are able to proceed, because items can come back into stock when people abandon their carts. Alternatively, you can try to checkout later once you get another in-stock notification for it.</p><p id="36677da6-c723-4d8e-8ee0-03af5efde1c7" class="">
-</p><p id="eb3c187c-d832-4381-9321-571a70d05732" class=""><strong>Q: If I add the item to my cart, will it be removed if I don&#x27;t check out?</strong></p><p id="5226caf4-39c8-41be-9b7f-2c70552c7e18" class="">A: To our knowledge, no. If you have the item in your cart already, you can refresh from your cart instead of from your Wishlist/the product page. </p><p id="e69357a1-491b-4f75-aafc-bf0fb6c64619" class="">
-</p><p id="61e5c063-9b37-439f-9622-2a6b1be80089" class=""><strong>Q: I haven&#x27;t gotten a notification in days. What&#x27;s going on?</strong></p><p id="86aa10f1-85c4-46af-a5c5-c707965b2ee6" class="">A: Louis Vuitton stock is unpredictable, and there have been times when a specific item didn&#x27;t stock for weeks. For example, the Mini Pochette in Monogram barely stocked at all in the first two weeks of October 2020. Be patient! The advantage of using Luxify App is that you will be the first to know when it does stock 😇</p><p id="02db9069-20b4-423f-9539-5e3b5acb392f" class="">
-</p><p id="3b91e89c-e8c4-4e20-9e9b-c3998c523c73" class=""><strong>Have any other questions for us? Feel free to </strong><strong><a href="https://www.facebook.com/luxify.app.3/">contact us on Facebook</a></strong><strong> or through </strong><strong><a href="https://www.instagram.com/luxnotifs/">our Instagram page</a></strong><strong>!</strong></p><p id="192df6d3-a696-4ee3-a22f-82ad365837f2" class="">
-</p><h2 id="fd96e3b0-0f59-4936-b673-f94a982388f4" class="">About Luxify App 🌞</h2><p id="e5367ee0-d33b-45c5-bb6d-d3bb02f796cb" class="">Luxify App actually started out as a quarantine passion project for a friend who was frustrated that she could not get her hands on the LV items she was ready to purchase. You can check out her <a href="https://www.youtube.com/channel/UCyC9wOlH7yRDShOiIvDSZ4w">unboxing videos on Youtube</a> - she talks about how she used this service in her <a href="https://www.youtube.com/watch?v=Pju0Lb3Mqes&amp;t=1s&amp;ab_channel=livingabovemymeans">Nano Speedy unboxing</a>! </p><p id="f4957cbc-6aee-4cc0-85d0-711c6f3198fe" class="">Since we set out on this journey in late September 2020, she has used this to successfully snag:</p><div id="2ab17dac-b354-43f1-9b83-451695d68313" class="column-list"><div id="cfd73063-b4e3-41ab-968f-2e853c6393d9" style="width:33.333333333333336%" class="column"><figure id="43174d39-caca-47e8-879c-f74efb5eb2d2" class="image"><a href="Luxify%20App%20cbd1230d7c274dd598c232f602ecd48e/Untitled%202.png"><img style="width:192px" src="Luxify%20App%20cbd1230d7c274dd598c232f602ecd48e/Untitled%202.png"/></a><figcaption>Mini Pochette Accessoires</figcaption></figure><p id="f4157109-3ae8-4dd2-8e7e-ae0970489139" class="">
-</p></div><div id="a9b875cc-b732-419b-a90a-2d46a8c82871" style="width:33.33333333333333%" class="column"><figure id="b8e8f479-13a0-46f0-8823-bf50113a5d59" class="image"><a href="Luxify%20App%20cbd1230d7c274dd598c232f602ecd48e/Untitled%203.png"><img style="width:240px" src="Luxify%20App%20cbd1230d7c274dd598c232f602ecd48e/Untitled%203.png"/></a><figcaption>Nano Speedy</figcaption></figure><p id="bb6715f4-7e32-443d-b1d6-605138fe4125" class="">
-</p></div><div id="8b92aada-860c-46cb-9e19-c177f01cabde" style="width:33.33333333333334%" class="column"><figure id="7e7a39b6-546f-43fa-b5a7-870ac928ab3e" class="image"><a href="Luxify%20App%20cbd1230d7c274dd598c232f602ecd48e/Untitled%204.png"><img style="width:438px" src="Luxify%20App%20cbd1230d7c274dd598c232f602ecd48e/Untitled%204.png"/></a><figcaption>Pochette Accessoires x 2</figcaption></figure></div></div><p id="afa7c1d1-8877-45b4-b2ac-b1ae7a436cd5" class="">.. each within 24 hours of beginning her search (provided that the items were actually stocking at the time). So, what are you waiting for? Let us help you knock off some of those luxury wishlist items!</p><p id="59b5cab4-815a-4f46-b212-ac27c094513a" class="">
-</p><p id="2f4de08e-9ab3-448b-939c-61d7648eb9a3" class=""><strong>If you have any questions about our service or want to learn more, don&#x27;t hesitate to </strong><strong><a href="https://www.facebook.com/luxify.app.3/">contact us on Facebook</a></strong><strong> or through </strong><strong><a href="https://www.instagram.com/luxnotifs/">our Instagram page</a></strong><strong>!</strong></p></div></article></body></html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Luxify App</title>
+    <style>
+      /* webkit printing magic: print all background colors */
+      html {
+      -webkit-print-color-adjust: exact;
+      }
+      * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact;
+      }
+      html,
+      body {
+      margin: 0;
+      padding: 0;
+      }
+      @media only screen {
+      body {
+      margin: 2em auto;
+      max-width: 900px;
+      color: rgb(55, 53, 47);
+      }
+      }
+      body {
+      line-height: 1.5;
+      white-space: pre-wrap;
+      }
+      a,
+      a.visited {
+      color: inherit;
+      text-decoration: underline;
+      }
+      .pdf-relative-link-path {
+      font-size: 80%;
+      color: #444;
+      }
+      h1,
+      h2,
+      h3 {
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      font-weight: 600;
+      margin-bottom: 0;
+      }
+      .page-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 0.75em;
+      }
+      h1 {
+      font-size: 1.875rem;
+      margin-top: 1.875rem;
+      }
+      h2 {
+      font-size: 1.5rem;
+      margin-top: 1.5rem;
+      }
+      h3 {
+      font-size: 1.25rem;
+      margin-top: 1.25rem;
+      }
+      .source {
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      padding: 1.5em;
+      word-break: break-all;
+      }
+      .callout {
+      border-radius: 3px;
+      padding: 1rem;
+      }
+      figure {
+      margin: 1.25em 0;
+      page-break-inside: avoid;
+      }
+      figcaption {
+      opacity: 0.5;
+      font-size: 85%;
+      margin-top: 0.5em;
+      }
+      mark {
+      background-color: transparent;
+      }
+      .indented {
+      padding-left: 1.5em;
+      }
+      hr {
+      background: transparent;
+      display: block;
+      width: 100%;
+      height: 1px;
+      visibility: visible;
+      border: none;
+      border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+      }
+      img {
+      max-width: 100%;
+      }
+      @media only print {
+      img {
+      max-height: 100vh;
+      object-fit: contain;
+      }
+      }
+      @page {
+      margin: 1in;
+      }
+      .collection-content {
+      font-size: 0.875rem;
+      }
+      .column-list {
+      display: flex;
+      justify-content: space-between;
+      }
+      .column {
+      padding: 0 1em;
+      }
+      .column:first-child {
+      padding-left: 0;
+      }
+      .column:last-child {
+      padding-right: 0;
+      }
+      .table_of_contents-item {
+      display: block;
+      font-size: 0.875rem;
+      line-height: 1.3;
+      padding: 0.125rem;
+      }
+      .table_of_contents-indent-1 {
+      margin-left: 1.5rem;
+      }
+      .table_of_contents-indent-2 {
+      margin-left: 3rem;
+      }
+      .table_of_contents-indent-3 {
+      margin-left: 4.5rem;
+      }
+      .table_of_contents-link {
+      text-decoration: none;
+      opacity: 0.7;
+      border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+      }
+      table,
+      th,
+      td {
+      border: 1px solid rgba(55, 53, 47, 0.09);
+      border-collapse: collapse;
+      }
+      table {
+      border-left: none;
+      border-right: none;
+      }
+      th,
+      td {
+      font-weight: normal;
+      padding: 0.25em 0.5em;
+      line-height: 1.5;
+      min-height: 1.5em;
+      text-align: left;
+      }
+      th {
+      color: rgba(55, 53, 47, 0.6);
+      }
+      ol,
+      ul {
+      margin: 0;
+      margin-block-start: 0.6em;
+      margin-block-end: 0.6em;
+      }
+      li > ol:first-child,
+      li > ul:first-child {
+      margin-block-start: 0.6em;
+      }
+      ul > li {
+      list-style: disc;
+      }
+      ul.to-do-list {
+      text-indent: -1.7em;
+      }
+      ul.to-do-list > li {
+      list-style: none;
+      }
+      .to-do-children-checked {
+      text-decoration: line-through;
+      opacity: 0.375;
+      }
+      ul.toggle > li {
+      list-style: none;
+      }
+      ul {
+      padding-inline-start: 1.7em;
+      }
+      ul > li {
+      padding-left: 0.1em;
+      }
+      ol {
+      padding-inline-start: 1.6em;
+      }
+      ol > li {
+      padding-left: 0.2em;
+      }
+      .mono ol {
+      padding-inline-start: 2em;
+      }
+      .mono ol > li {
+      text-indent: -0.4em;
+      }
+      .toggle {
+      padding-inline-start: 0em;
+      list-style-type: none;
+      }
+      /* Indent toggle children */
+      .toggle > li > details {
+      padding-left: 1.7em;
+      }
+      .toggle > li > details > summary {
+      margin-left: -1.1em;
+      }
+      .selected-value {
+      display: inline-block;
+      padding: 0 0.5em;
+      background: rgba(206, 205, 202, 0.5);
+      border-radius: 3px;
+      margin-right: 0.5em;
+      margin-top: 0.3em;
+      margin-bottom: 0.3em;
+      white-space: nowrap;
+      }
+      .collection-title {
+      display: inline-block;
+      margin-right: 1em;
+      }
+      time {
+      opacity: 0.5;
+      }
+      .icon {
+      display: inline-block;
+      max-width: 1.2em;
+      max-height: 1.2em;
+      text-decoration: none;
+      vertical-align: text-bottom;
+      margin-right: 0.5em;
+      }
+      img.icon {
+      border-radius: 3px;
+      }
+      .user-icon {
+      width: 1.5em;
+      height: 1.5em;
+      border-radius: 100%;
+      margin-right: 0.5rem;
+      }
+      .user-icon-inner {
+      font-size: 0.8em;
+      }
+      .text-icon {
+      border: 1px solid #000;
+      text-align: center;
+      }
+      .page-cover-image {
+      display: block;
+      object-fit: cover;
+      width: 100%;
+      height: 30vh;
+      }
+      .page-header-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      }
+      .page-header-icon-with-cover {
+      margin-top: -0.72em;
+      margin-left: 0.07em;
+      }
+      .page-header-icon img {
+      border-radius: 3px;
+      }
+      .link-to-page {
+      margin: 1em 0;
+      padding: 0;
+      border: none;
+      font-weight: 500;
+      }
+      p > .user {
+      opacity: 0.5;
+      }
+      td > .user,
+      td > time {
+      white-space: nowrap;
+      }
+      input[type="checkbox"] {
+      transform: scale(1.5);
+      margin-right: 0.6em;
+      vertical-align: middle;
+      }
+      p {
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+      }
+      .image {
+      border: none;
+      margin: 1.5em 0;
+      padding: 0;
+      border-radius: 0;
+      text-align: center;
+      }
+      .code,
+      code {
+      background: rgba(135, 131, 120, 0.15);
+      border-radius: 3px;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+      font-size: 85%;
+      tab-size: 2;
+      }
+      code {
+      color: #eb5757;
+      }
+      .code {
+      padding: 1.5em 1em;
+      }
+      .code-wrap {
+      white-space: pre-wrap;
+      word-break: break-all;
+      }
+      .code > code {
+      background: none;
+      padding: 0;
+      font-size: 100%;
+      color: inherit;
+      }
+      blockquote {
+      font-size: 1.25em;
+      margin: 1em 0;
+      padding-left: 1em;
+      border-left: 3px solid rgb(55, 53, 47);
+      }
+      .bookmark {
+      text-decoration: none;
+      max-height: 8em;
+      padding: 0;
+      display: flex;
+      width: 100%;
+      align-items: stretch;
+      }
+      .bookmark-title {
+      font-size: 0.85em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      height: 1.75em;
+      white-space: nowrap;
+      }
+      .bookmark-text {
+      display: flex;
+      flex-direction: column;
+      }
+      .bookmark-info {
+      flex: 4 1 180px;
+      padding: 12px 14px 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      }
+      .bookmark-image {
+      width: 33%;
+      flex: 1 1 180px;
+      display: block;
+      position: relative;
+      object-fit: cover;
+      border-radius: 1px;
+      }
+      .bookmark-description {
+      color: rgba(55, 53, 47, 0.6);
+      font-size: 0.75em;
+      overflow: hidden;
+      max-height: 4.5em;
+      word-break: break-word;
+      }
+      .bookmark-href {
+      font-size: 0.75em;
+      margin-top: 0.25em;
+      }
+      .sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+      .code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+      .serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+      .mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+      .pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+      .pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+      .pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+      .pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+      .highlight-default {
+      }
+      .highlight-gray {
+      color: rgb(155,154,151);
+      }
+      .highlight-brown {
+      color: rgb(100,71,58);
+      }
+      .highlight-orange {
+      color: rgb(217,115,13);
+      }
+      .highlight-yellow {
+      color: rgb(223,171,1);
+      }
+      .highlight-teal {
+      color: rgb(15,123,108);
+      }
+      .highlight-blue {
+      color: rgb(11,110,153);
+      }
+      .highlight-purple {
+      color: rgb(105,64,165);
+      }
+      .highlight-pink {
+      color: rgb(173,26,114);
+      }
+      .highlight-red {
+      color: rgb(224,62,62);
+      }
+      .highlight-gray_background {
+      background: rgb(235,236,237);
+      }
+      .highlight-brown_background {
+      background: rgb(233,229,227);
+      }
+      .highlight-orange_background {
+      background: rgb(250,235,221);
+      }
+      .highlight-yellow_background {
+      background: rgb(251,243,219);
+      }
+      .highlight-teal_background {
+      background: rgb(221,237,234);
+      }
+      .highlight-blue_background {
+      background: rgb(221,235,241);
+      }
+      .highlight-purple_background {
+      background: rgb(234,228,242);
+      }
+      .highlight-pink_background {
+      background: rgb(244,223,235);
+      }
+      .highlight-red_background {
+      background: rgb(251,228,228);
+      }
+      .block-color-default {
+      color: inherit;
+      fill: inherit;
+      }
+      .block-color-gray {
+      color: rgba(55, 53, 47, 0.6);
+      fill: rgba(55, 53, 47, 0.6);
+      }
+      .block-color-brown {
+      color: rgb(100,71,58);
+      fill: rgb(100,71,58);
+      }
+      .block-color-orange {
+      color: rgb(217,115,13);
+      fill: rgb(217,115,13);
+      }
+      .block-color-yellow {
+      color: rgb(223,171,1);
+      fill: rgb(223,171,1);
+      }
+      .block-color-teal {
+      color: rgb(15,123,108);
+      fill: rgb(15,123,108);
+      }
+      .block-color-blue {
+      color: rgb(11,110,153);
+      fill: rgb(11,110,153);
+      }
+      .block-color-purple {
+      color: rgb(105,64,165);
+      fill: rgb(105,64,165);
+      }
+      .block-color-pink {
+      color: rgb(173,26,114);
+      fill: rgb(173,26,114);
+      }
+      .block-color-red {
+      color: rgb(224,62,62);
+      fill: rgb(224,62,62);
+      }
+      .block-color-gray_background {
+      background: rgb(235,236,237);
+      }
+      .block-color-brown_background {
+      background: rgb(233,229,227);
+      }
+      .block-color-orange_background {
+      background: rgb(250,235,221);
+      }
+      .block-color-yellow_background {
+      background: rgb(251,243,219);
+      }
+      .block-color-teal_background {
+      background: rgb(221,237,234);
+      }
+      .block-color-blue_background {
+      background: rgb(221,235,241);
+      }
+      .block-color-purple_background {
+      background: rgb(234,228,242);
+      }
+      .block-color-pink_background {
+      background: rgb(244,223,235);
+      }
+      .block-color-red_background {
+      background: rgb(251,228,228);
+      }
+      .select-value-color-default { background-color: rgba(206,205,202,0.5); }
+      .select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+      .select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+      .select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+      .select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+      .select-value-color-green { background-color: rgba(0,135,107,0.2); }
+      .select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+      .select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+      .select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+      .select-value-color-red { background-color: rgba(255,0,26,0.2); }
+      .checkbox {
+      display: inline-flex;
+      vertical-align: text-bottom;
+      width: 16;
+      height: 16;
+      background-size: 16px;
+      margin-left: 2px;
+      margin-right: 5px;
+      }
+      .checkbox-on {
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+      }
+      .checkbox-off {
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+      }
+    </style>
+  </head>
+  <body>
+    <article id="587eb37c-0ca8-4aff-b11f-2f455fa6dcb6" class="page sans">
+      <header>
+        <img class="page-cover-image" src="https://www.notion.so/images/page-cover/solid_beige.png" style="object-position:center 40%"/>
+        <div class="page-header-icon page-header-icon-with-cover"><span class="icon">✨</span></div>
+        <h1 class="page-title">Luxify App</h1>
+      </header>
+      <div class="page-body">
+        <p id="e7c2f11a-7509-4ca2-ac0f-69502c9ef355" class="">Luxify App is a software service that tracks Louis Vuitton item stock and sends notifications to you as soon as they become available to ✨ Add to Cart ✨.</p>
+        <p id="9f7ecff0-8ed4-46ec-8de2-fb09dc485ce3" class="">It currently sends notifications through <code><strong>Facebook Messenger Chat</strong></code> and supports <code><strong>Louis Vuitton </strong></code>stock notifications.</p>
+        <p id="6b2097b0-b033-46f8-bf7b-af77145a680f" class=""></p>
+        <h2 id="421fef18-1287-4b90-8bf6-cb14b08f6c08" class="">Pricing Plan 💸 </h2>
+        <p id="4b039f60-7be9-4523-9995-d1d63229de94" class=""><strong>$20 USD / month</strong> - Notifications are turned on for 1 item of your choice for 1 month</p>
+        <p id="db5dc15d-212d-492b-bdec-6f489c8cb1d6" class=""><strong>$35 USD / month</strong> - Notifications are turned on for up to 3 items of your choice for 1 month</p>
+        <p id="37bf3f26-4db2-434d-bb40-600d0b03656e" class=""><em>Questions? Feel free to </em><em><a href="https://www.facebook.com/luxify.app.3/">contact us on Facebook</a></em><em> or through </em><em><a href="https://www.instagram.com/luxnotifs/">our Instagram page</a></em><em>. </em></p>
+        <p id="313cd200-fc0a-4ff4-9f1e-979476249627" class=""></p>
+        <h2 id="f6d30c04-bf1c-4754-b5f8-e2b4ce124e04" class="">How to Get Started 👛</h2>
+        <ol id="d52a37d2-45c4-4ad5-94c7-e0db0daaf11d" class="numbered-list" start="1">
+          <li><a href="https://www.facebook.com/luxify.app.3/">Send a message to us on Facebook</a> to let us know you are interested! <em>Please include your region (country) + links to the items you are interested in receiving stock notifications for.</em></li>
+        </ol>
+        <ol id="932f7417-39df-44b0-a59d-b8f6e6d51e7c" class="numbered-list" start="2">
+          <li>We will provide PayPal payment instructions to you. Since we are based in Canada, we are unable to accept Venmo or bank transfers in most cases. 😅</li>
+        </ol>
+        <ol id="3904cf8b-8b53-4a57-ab67-9294a94c17ac" class="numbered-list" start="3">
+          <li>As soon as payment is verified, we will add you to the notification system for 30 days.</li>
+        </ol>
+        <ol id="b9cfd653-e943-47d1-81a1-294742b501fc" class="numbered-list" start="4">
+          <li>You will begin receiving notifications every time the item(s) are in stock:</li>
+        </ol>
+        <div id="92744ec9-9e27-4ae7-8860-bc6c08d814e4" class="column-list">
+          <div id="058e22f8-e26b-44da-8951-767b440f2d7d" style="width:43.75%" class="column">
+            <figure id="cbd1230d-7c27-4dd5-98c2-32f602ecd48e" class="image">
+              <a href="Luxify%20App%20cbd1230d7c274dd598c232f602ecd48e/Untitled.png"><img style="width:288px" src="Luxify%20App%20cbd1230d7c274dd598c232f602ecd48e/Untitled.png"/></a>
+              <figcaption>Example of device notifications</figcaption>
+            </figure>
+            <p id="454d0cf6-5270-4a47-b3a1-7b52484fe359" class=""></p>
+          </div>
+          <div id="b8da96de-d497-4e90-b999-10ebbb034ef7" style="width:56.25%" class="column">
+            <figure id="ac9c487e-3291-4819-9b7e-8afdd9dea15a" class="image">
+              <a href="Luxify%20App%20cbd1230d7c274dd598c232f602ecd48e/Untitled%201.png"><img style="width:384px" src="Luxify%20App%20cbd1230d7c274dd598c232f602ecd48e/Untitled%201.png"/></a>
+              <figcaption>Example of stock notification messages </figcaption>
+            </figure>
+            <p id="a1b788c5-aa53-4ef2-bd7a-8162b38bbf70" class=""></p>
+          </div>
+        </div>
+        <h2 id="6994b6bf-07d9-4c7b-90f9-9f08fe9f78ee" class=""><strong>Tips and Tricks for Securing Items 💡</strong></h2>
+        <ol id="b672bdce-4d46-4f0a-984f-2e2faf89ec2b" class="numbered-list" start="1">
+          <li>Turn message notifications from Luxify App on</li>
+        </ol>
+        <ol id="2eab03f1-2bea-4992-b72a-f030be5f158d" class="numbered-list" start="2">
+          <li>Stay signed in to your Louis Vuitton account</li>
+        </ol>
+        <ol id="ac4e2eeb-7497-4595-9252-a86bfe99bbe1" class="numbered-list" start="3">
+          <li>Pre-fill your delivery address details so you can check out faster</li>
+        </ol>
+        <ol id="c7cc6afb-d1f3-4890-b495-aa09400b90ef" class="numbered-list" start="4">
+          <li>Pre-fill your credit card information or use PayPal so you can check out faster</li>
+        </ol>
+        <ol id="2a6ed62b-ebc6-449f-87ab-34a109d02af1" class="numbered-list" start="5">
+          <li>Refresh from your Wishlist page - there are rumours that items will appear as &quot;Add to Cart&quot; a few seconds sooner on there than on the product page</li>
+        </ol>
+        <ol id="b3169476-bfa0-4854-b880-8ca9c74ee043" class="numbered-list" start="6">
+          <li>If an item is in stock, the notification system will message you continuously (every 15 seconds) until it is out of stock. This will give you an idea of how quickly that item sells out</li>
+        </ol>
+        <ol id="46371fb0-c925-48aa-a240-599d19d3488f" class="numbered-list" start="7">
+          <li>If you manage to add the item to your cart but cannot checkout due to the item being sold out already, you can continue refreshing your cart until you may proceed, or wait until the next Luxify App notifications to proceed</li>
+        </ol>
+        <p id="deabbb8c-0dad-471d-92b3-5b0b5df8dce2" class=""></p>
+        <h2 id="df769acd-786f-4142-a0d3-945d290acb8a" class="">FAQ 🤓</h2>
+        <p id="89758bbe-7143-4d80-b5c3-505c09d6d434" class=""></p>
+        <p id="c406515e-5daf-48da-a904-e732b00bec4f" class=""><strong>Q: Why does Luxify App use Facebook Messenger to send notifications?</strong></p>
+        <p id="e02cfe0a-d7c1-4757-ba3c-fcb98ccb700f" class="">A: The simple answer - it&#x27;s <strong>fast.</strong> If you require accommodations or would prefer to receive notifications through emails, please let us know. We&#x27;re happy to see what we can do!</p>
+        <p id="df5c5285-c4de-4aa2-ba10-81d88a8005a2" class=""></p>
+        <p id="6034e973-a22e-46b4-941d-8e76ab294415" class=""><strong>Q: Does Luxify App only work for Louis Vuitton items? What about items from _______?</strong></p>
+        <p id="3ec75d18-3c18-4988-ba24-ccb2b2e84157" class="">A: At the moment, we only <em>confidently</em> support notifications for Louis Vuitton items (across all of their international sites). However, we are looking into adding support for Chanel Beauty and other designers. Feel free to ask if you have something specific in mind and we can look into it for you.</p>
+        <p id="481ff942-b198-4015-b435-177542bf2459" class=""></p>
+        <p id="76070833-221b-4395-ad46-a5a868e1f8f2" class=""><strong>Q: Will Luxify App help me complete my purchase of items?</strong></p>
+        <p id="6d14ba76-9779-43e1-9178-4f4c0bcc83d2" class="">A: Nope! This is very important to note - Luxify App is a <em>notification service</em> that will let you know when you&#x27;ll be able to add an item to your cart, but it will not check out or automate the buying process for you.</p>
+		<p id="a5194ee9-409d-4f1e-8272-4d96b4885572" class=""></p>
+		<p id="be89ceed-fa30-4212-b9a7-71febe195116" class=""><strong>Q: I got a notification but the item was out of stock when I went to check. Why didn&#x27;t it work?</strong></p>
+        <p id="86162d05-8817-47b5-9b0b-568cb54a4023" class="">A: Depending on the item, it can sell out within seconds to minutes after it stocks. We would recommend staying signed in to your Louis Vuitton account so you can quickly add it to your cart <em>as soon as you get a notification</em>. </p>
+        <p id="a5194ee9-409d-4f1e-8272-4d96b4885572" class=""></p>
+        <p id="b4841a27-2de0-43ed-969e-76937aa41c18" class=""><strong>Q: I added the item to my cart but then I couldn&#x27;t proceed! Help?!</strong></p>
+        <p id="5c29aee7-9714-4a84-9d9e-5b4b2ae79521" class="">A: Remain calm! Keep refreshing<em> from your cart </em>until you are able to proceed, because items can come back into stock when people abandon their carts. Alternatively, you can try to checkout later once you get another in-stock notification for it.</p>
+        <p id="36677da6-c723-4d8e-8ee0-03af5efde1c7" class=""></p>
+        <p id="eb3c187c-d832-4381-9321-571a70d05732" class=""><strong>Q: If I add the item to my cart, will it be removed if I don&#x27;t check out?</strong></p>
+        <p id="5226caf4-39c8-41be-9b7f-2c70552c7e18" class="">A: To our knowledge, no. If you have the item in your cart already, you can refresh from your cart instead of from your Wishlist/the product page. </p>
+        <p id="e69357a1-491b-4f75-aafc-bf0fb6c64619" class=""></p>
+        <p id="61e5c063-9b37-439f-9622-2a6b1be80089" class=""><strong>Q: I haven&#x27;t gotten a notification in days. What&#x27;s going on?</strong></p>
+        <p id="86aa10f1-85c4-46af-a5c5-c707965b2ee6" class="">A: Louis Vuitton stock is unpredictable, and there have been times when a specific item didn&#x27;t stock for weeks. For example, the Mini Pochette in Monogram barely stocked at all in the first two weeks of October 2020. Be patient! The advantage of using Luxify App is that you will be the first to know when it does stock 😇</p>
+        <p id="02db9069-20b4-423f-9539-5e3b5acb392f" class=""></p>
+        <p id="3b91e89c-e8c4-4e20-9e9b-c3998c523c73" class=""><strong>Have any other questions for us? Feel free to </strong><strong><a href="https://www.facebook.com/luxify.app.3/">contact us on Facebook</a></strong><strong> or through </strong><strong><a href="https://www.instagram.com/luxnotifs/">our Instagram page</a></strong><strong>!</strong></p>
+        <p id="192df6d3-a696-4ee3-a22f-82ad365837f2" class=""></p>
+        <h2 id="fd96e3b0-0f59-4936-b673-f94a982388f4" class="">About Luxify App 🌞</h2>
+        <p id="e5367ee0-d33b-45c5-bb6d-d3bb02f796cb" class="">Luxify App actually started out as a quarantine passion project for a friend who was frustrated that she could not get her hands on the LV items she was ready to purchase. You can check out her <a href="https://www.youtube.com/channel/UCyC9wOlH7yRDShOiIvDSZ4w">unboxing videos on Youtube</a> - she talks about how she used this service in her <a href="https://www.youtube.com/watch?v=Pju0Lb3Mqes&amp;t=1s&amp;ab_channel=livingabovemymeans">Nano Speedy unboxing</a>! </p>
+        <p id="f4957cbc-6aee-4cc0-85d0-711c6f3198fe" class="">Since we set out on this journey in late September 2020, she has used this to successfully snag:</p>
+        <div id="2ab17dac-b354-43f1-9b83-451695d68313" class="column-list">
+          <div id="cfd73063-b4e3-41ab-968f-2e853c6393d9" style="width:33.333333333333336%" class="column">
+            <figure id="43174d39-caca-47e8-879c-f74efb5eb2d2" class="image">
+              <a href="Luxify%20App%20cbd1230d7c274dd598c232f602ecd48e/Untitled%202.png"><img style="width:192px" src="Luxify%20App%20cbd1230d7c274dd598c232f602ecd48e/Untitled%202.png"/></a>
+              <figcaption>Mini Pochette Accessoires</figcaption>
+            </figure>
+            <p id="f4157109-3ae8-4dd2-8e7e-ae0970489139" class=""></p>
+          </div>
+          <div id="a9b875cc-b732-419b-a90a-2d46a8c82871" style="width:33.33333333333333%" class="column">
+            <figure id="b8e8f479-13a0-46f0-8823-bf50113a5d59" class="image">
+              <a href="Luxify%20App%20cbd1230d7c274dd598c232f602ecd48e/Untitled%203.png"><img style="width:240px" src="Luxify%20App%20cbd1230d7c274dd598c232f602ecd48e/Untitled%203.png"/></a>
+              <figcaption>Nano Speedy</figcaption>
+            </figure>
+            <p id="bb6715f4-7e32-443d-b1d6-605138fe4125" class=""></p>
+          </div>
+          <div id="8b92aada-860c-46cb-9e19-c177f01cabde" style="width:33.33333333333334%" class="column">
+            <figure id="7e7a39b6-546f-43fa-b5a7-870ac928ab3e" class="image">
+              <a href="Luxify%20App%20cbd1230d7c274dd598c232f602ecd48e/Untitled%204.png"><img style="width:438px" src="Luxify%20App%20cbd1230d7c274dd598c232f602ecd48e/Untitled%204.png"/></a>
+              <figcaption>Pochette Accessoires x 2</figcaption>
+            </figure>
+          </div>
+        </div>
+        <p id="afa7c1d1-8877-45b4-b2ac-b1ae7a436cd5" class="">.. each within 24 hours of beginning her search (provided that the items were actually stocking at the time). So, what are you waiting for? Let us help you knock off some of those luxury wishlist items!</p>
+        <p id="59b5cab4-815a-4f46-b212-ac27c094513a" class=""></p>
+        <p id="2f4de08e-9ab3-448b-939c-61d7648eb9a3" class=""><strong>If you have any questions about our service or want to learn more, don&#x27;t hesitate to </strong><strong><a href="https://www.facebook.com/luxify.app.3/">contact us on Facebook</a></strong><strong> or through </strong><strong><a href="https://www.instagram.com/luxnotifs/">our Instagram page</a></strong><strong>!</strong></p>
+      </div>
+    </article>
+  </body>
+</html>
